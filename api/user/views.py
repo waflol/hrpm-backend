@@ -17,8 +17,8 @@ class UserApiViewSet(viewsets.ViewSet,
                      generics.RetrieveAPIView):
     """
     API:
-        * đăng ký user - generics.CreateAPIView
-        * lấy thông tin user - generics.RetrieveAPIView
+        đăng ký user - generics.CreateAPIView
+        lấy thông tin user - generics.RetrieveAPIView
         * lấy danh sách user - generics.ListAPIView
     """
     queryset = User.objects.filter(is_active=True)

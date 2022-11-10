@@ -8,6 +8,7 @@ _UNSAVED_FILEFIELD = 'unsaved_filefield'
 
 @receiver(pre_save, sender=get_user_model())
 def skip_saving_file(sender, instance=None, **kwargs):
+    print('Before save user')
     if not instance.id and not hasattr(instance, _UNSAVED_FILEFIELD):
         setattr(instance, _UNSAVED_FILEFIELD, instance.avatar)
         instance.avatar = None
@@ -15,6 +16,7 @@ def skip_saving_file(sender, instance=None, **kwargs):
 
 @receiver(post_save, sender=get_user_model())
 def save_file(sender, instance, created, **kwargs):
+    print('After save user')
     if created and hasattr(instance, _UNSAVED_FILEFIELD):
         instance.avatar = getattr(instance, _UNSAVED_FILEFIELD)
         instance.save()
