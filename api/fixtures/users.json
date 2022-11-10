@@ -1,0 +1,21 @@
+[
+{
+    "model": "user.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$jplmqgRjneZoFpSY48PPya$kzo6AD77mUsljmTY6ziBVDRX58RZ5RHHZAgzqYOkhJI=",
+        "last_login": "2022-11-10T10:41:07.051Z",
+        "is_superuser": true,
+        "username": "admin@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-11-10T10:39:47.045Z",
+        "email": "admin@gmail.com",
+        "first_name": "admin",
+        "last_name": "admin",
+        "avatar": "",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

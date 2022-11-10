@@ -7,3 +7,5 @@
     - List volume docker: docker volume ls
     - List volume docker: docker volume rm <volume_name>"
     - wait_for_db and migrate: docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py migrate"
+    - To dump data: python manage.py dumpdata app.model_name --indent 4 > fixtures/model_name.json
+    - To load data: python manage.py loaddata fixtures/projects.json --app project.Project
