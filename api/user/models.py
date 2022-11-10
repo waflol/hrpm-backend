@@ -50,7 +50,10 @@ class User(AbstractUser):
     email = models.EmailField(max_length=100, unique=True)
     first_name = models.CharField(_("first name"), max_length=150, blank=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
+    phone_number = models.CharField(max_length=13, null=True)
     avatar = models.ImageField(upload_to=user_avatar_directory_path, blank=True, null=True)
+    role = models.CharField(max_length=150, default='Candidate')
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ["first_name", "last_name"]
     objects = CustomUserManager()
