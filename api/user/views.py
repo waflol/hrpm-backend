@@ -1,5 +1,5 @@
 from django.shortcuts import render  # noqa
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from .models import User
 from .serializers import UserSerializer
 from rest_framework import generics
@@ -11,10 +11,9 @@ from rest_framework.parsers import MultiPartParser
 #     queryset = User.objects.filter(is_active=True)
 #     serializer_class = UserSerializer
 
-class UserApiViewSet(viewsets.ViewSet,
-                     generics.ListAPIView,
-                     generics.CreateAPIView,
-                     generics.RetrieveAPIView):
+class UserListApiViewSet(viewsets.ViewSet,
+                         generics.CreateAPIView,
+                         generics.ListAPIView):
     """
     API:
         đăng ký user - generics.CreateAPIView
@@ -24,3 +23,12 @@ class UserApiViewSet(viewsets.ViewSet,
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserSerializer
     parser_classes = [MultiPartParser, ]
+
+
+class ProfileUserApiViewSet(viewsets.ViewSet, generics.RetrieveUpdateAPIView):
+    serializer_class = UserSerializer
+    parser_classes = [MultiPartParser, ]
+    lookup_field = "id"
+
+    def get_queryset(self):
+        return User.objects.filter(id=self.request.user.id)

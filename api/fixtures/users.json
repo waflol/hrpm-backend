@@ -13,9 +13,11 @@
         "email": "admin@gmail.com",
         "first_name": "Clark",
         "last_name": "Le",
+        "is_male": false,
         "phone_number": "09831231232",
+        "location": null,
         "avatar": "user_1/avatar/10112022170855_300-1.jpg",
-        "role": "Admin",
+        "is_recruiter": false,
         "groups": [],
         "user_permissions": []
     }
@@ -34,9 +36,11 @@
         "email": "user1@gmail.com",
         "first_name": "User",
         "last_name": "First",
+        "is_male": false,
         "phone_number": "09831231232",
+        "location": null,
         "avatar": "user_2/avatar/10112022171557_300-1.jpg",
-        "role": "Candidate",
+        "is_recruiter": false,
         "groups": [],
         "user_permissions": []
     }
@@ -55,9 +59,11 @@
         "email": "user2@gmail.com",
         "first_name": "User",
         "last_name": "Second",
+        "is_male": false,
         "phone_number": "09831231232",
+        "location": null,
         "avatar": "user_3/avatar/10112022172327_300-2.jpg",
-        "role": "Candidate",
+        "is_recruiter": false,
         "groups": [],
         "user_permissions": []
     }

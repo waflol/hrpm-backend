@@ -1,11 +1,12 @@
 from django.urls import path, include  # noqa
-from .views import UserApiViewSet
+from . import views
 from rest_framework.routers import DefaultRouter
-
-router = DefaultRouter()
-router.register('users', UserApiViewSet)
-
 app_name = 'user'
+router = DefaultRouter(app_name="test")
+router.register(r'users', views.UserListApiViewSet, basename='users')
+router.register(r'profile', views.ProfileUserApiViewSet, basename='profile')
+
+
 urlpatterns = [
     path('', include(router.urls))
 ]

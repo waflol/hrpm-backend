@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'corsheaders',
     'user',
+
 ]
 
 MIDDLEWARE = [
