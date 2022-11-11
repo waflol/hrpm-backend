@@ -28,7 +28,6 @@ class UserListApiViewSet(viewsets.ViewSet,
 class ProfileUserApiViewSet(viewsets.ViewSet, generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
     parser_classes = [MultiPartParser, ]
-    lookup_field = "id"
 
     def get_queryset(self):
         return User.objects.filter(id=self.request.user.id)
