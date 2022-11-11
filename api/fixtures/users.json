@@ -15,7 +15,7 @@
         "last_name": "Le",
         "phone_number": "09831231232",
         "avatar": "user_1/avatar/10112022170855_300-1.jpg",
-        "role": "Admin",
+        "is_recruiter": true,
         "groups": [],
         "user_permissions": []
     }
@@ -36,7 +36,7 @@
         "last_name": "First",
         "phone_number": "09831231232",
         "avatar": "user_2/avatar/10112022171557_300-1.jpg",
-        "role": "Candidate",
+        "is_recruiter": false,
         "groups": [],
         "user_permissions": []
     }
@@ -57,7 +57,7 @@
         "last_name": "Second",
         "phone_number": "09831231232",
         "avatar": "user_3/avatar/10112022172327_300-2.jpg",
-        "role": "Candidate",
+        "is_recruiter": false,
         "groups": [],
         "user_permissions": []
     }
