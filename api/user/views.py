@@ -1,5 +1,4 @@
-from django.shortcuts import render  # noqa
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions # noqa
 from .models import User
 from .serializers import UserSerializer
 from rest_framework import generics

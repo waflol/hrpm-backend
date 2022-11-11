@@ -4,7 +4,11 @@ from django.core.exceptions import ValidationError
 
 
 user = get_user_model().objects.create_superuser('admin@example.com', 'admin')
-options = {'user': user.id, 'client_type': 'confidential', 'authorization_grant_type': 'password', 'algorithm': '', 'name': 'test'}
+options = {
+    'user': user.id, 'client_type': 'confidential',
+    'authorization_grant_type': 'password',
+    'algorithm': '', 'name': 'test'
+}
 Application = get_application_model()
 application_fields = [field.name for field in Application._meta.fields]
 application_data = {}
