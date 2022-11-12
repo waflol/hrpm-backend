@@ -17,7 +17,7 @@ def user_cv_directory_path(instance, filename):
 class CVCandidate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     cv_file = models.FileField(upload_to=user_cv_directory_path)
-    applied = models.ManyToManyField(Job, null=True, blank=True)
+    applied = models.ManyToManyField(Job, blank=True)
 
     def __str__(self):
         return self.user.email
