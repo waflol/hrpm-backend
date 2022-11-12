@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     'corsheaders',
     'user',
     'oauth_manager',
+    'candidate',
+    'recruiter',
+    'quizzs',
+    'tag'
 
 ]
 

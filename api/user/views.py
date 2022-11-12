@@ -11,21 +11,24 @@ from rest_framework.parsers import MultiPartParser
 
 # Create your views here.
 
-class UserListApiViewSet(viewsets.ViewSet,
-                         generics.CreateAPIView,
-                         generics.ListAPIView):
-    """
-    Đăng ký và lấy thông tin tất cả User
-    """
+class UserListApiView(viewsets.ViewSet,
+                      generics.ListAPIView):
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserSerializer
     parser_classes = [MultiPartParser, ]
 
 
-class ProfileUserApiViewSet(viewsets.ViewSet, generics.RetrieveUpdateAPIView):
-    """
-        User bắt buộc phải đăng nhập mới có thể update và vào profile của mình
-    """
+class UserRegisterApiView(viewsets.ViewSet, generics.CreateAPIView):
+    serializer_class = UserSerializer
+
+
+class UserProfileApiView(viewsets.ViewSet, generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    parser_classes = [MultiPartParser, ]
+
+
+class ProfileUserApiView(viewsets.ViewSet, generics.UpdateAPIView):
     serializer_class = UserSerializer
     parser_classes = [MultiPartParser, ]
 
@@ -34,10 +37,10 @@ class ProfileUserApiViewSet(viewsets.ViewSet, generics.RetrieveUpdateAPIView):
 
     @action(methods=['get'], detail=False, url_path="current")
     def current_user(self, request):
-        return Response(self.serializer_class(request.user).data, status=status.HTTP_200_OK)
+        user = User.objects.get(id=request.user.id)
+        return Response(self.serializer_class(user).data, status=status.HTTP_200_OK)
 
-
-class CandidateProfileApiViewSet(viewsets.ViewSet, generics.ListAPIView):
-    queryset = User.objects.filter(Q(is_active=True) & Q(is_recruiter=False))
-    serializer_class = UserSerializer
-    parser_classes = [MultiPartParser, ]
+    # @action(methods=['put', 'patch'], detail=False, url_path="update")
+    # def current_user(self, request):
+    #     user = User.objects.get(id=request.user.id)
+    #     return Response(self.serializer_class(request.user).data, status=status.HTTP_200_OK)

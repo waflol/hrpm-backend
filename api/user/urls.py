@@ -4,11 +4,12 @@ from rest_framework.routers import DefaultRouter
 
 app_name = 'user'
 router = DefaultRouter()
-router.register(r'users', views.UserListApiViewSet, basename='users')
-router.register(r'profile', views.ProfileUserApiViewSet, basename='profile')
-router.register(r'candidatelist', views.CandidateProfileApiViewSet, basename='candidatelist')
+router.register(r'', views.UserListApiView, basename='')
+router.register(r'register', views.UserRegisterApiView, basename='register')
+router.register(r'profile', views.ProfileUserApiView, basename='profile')
+router.register(r'userprofile', views.UserProfileApiView, basename='userprofile')
 
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('user/', include(router.urls)),
 ]

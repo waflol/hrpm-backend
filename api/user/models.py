@@ -53,7 +53,7 @@ class User(AbstractUser):
     last_name = models.CharField(_("last name"), max_length=150)
     is_male = models.BooleanField(default=False)
     phone_number = models.CharField(max_length=13, null=True, blank=True)
-    location = models.CharField(max_length=255, null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
     avatar = models.ImageField(upload_to=user_avatar_directory_path, blank=True, null=True)  # noqa: E501
     is_recruiter = models.BooleanField(default=False)
     USERNAME_FIELD = 'email'
