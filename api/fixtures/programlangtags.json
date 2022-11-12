@@ -1,0 +1,44 @@
+[
+{
+    "model": "tag.programminglanguagetag",
+    "pk": 1,
+    "fields": {
+        "name": "Python"
+    }
+},
+{
+    "model": "tag.programminglanguagetag",
+    "pk": 2,
+    "fields": {
+        "name": "HTML"
+    }
+},
+{
+    "model": "tag.programminglanguagetag",
+    "pk": 3,
+    "fields": {
+        "name": "CSS"
+    }
+},
+{
+    "model": "tag.programminglanguagetag",
+    "pk": 4,
+    "fields": {
+        "name": "Javascript"
+    }
+},
+{
+    "model": "tag.programminglanguagetag",
+    "pk": 5,
+    "fields": {
+        "name": "React"
+    }
+},
+{
+    "model": "tag.programminglanguagetag",
+    "pk": 6,
+    "fields": {
+        "name": "Java"
+    }
+}
+]

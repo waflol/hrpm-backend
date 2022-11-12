@@ -1,0 +1,30 @@
+[
+{
+    "model": "tag.jobtag",
+    "pk": 1,
+    "fields": {
+        "name": "Full Time"
+    }
+},
+{
+    "model": "tag.jobtag",
+    "pk": 2,
+    "fields": {
+        "name": "Part Time"
+    }
+},
+{
+    "model": "tag.jobtag",
+    "pk": 3,
+    "fields": {
+        "name": "Freelancer"
+    }
+},
+{
+    "model": "tag.jobtag",
+    "pk": 4,
+    "fields": {
+        "name": "Internship"
+    }
+}
+]
