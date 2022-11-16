@@ -22,6 +22,7 @@ from drf_spectacular.views import (
 )
 from django.contrib import admin
 from django.urls import path, include # noqa
+from oauth2_provider.views.application import ApplicationRegistration
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +31,6 @@ urlpatterns = [
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='api-schema'), name='redoc'),   # noqa: E501
     path("o/", include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('api/', include('user.urls')),
+    path('api/', include('recruiter.urls')),
+    path('api/', include('candidate.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
