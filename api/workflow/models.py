@@ -5,7 +5,7 @@ from candidate.models import Candidate
 
 # Create your models here.
 class Workflow(models.Model):
-    job = models.OneToOneField(Job, on_delete=models.CASCADE, related_name='worklow')
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='worklow')
     name = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 

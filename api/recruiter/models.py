@@ -31,6 +31,7 @@ class Job(models.Model):
     salary = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField()
     status = models.PositiveIntegerField(default=0)
+    job_types = models.ManyToManyField(JobTag, blank=True, null=True)
 
     def __str__(self):
         return self.title
