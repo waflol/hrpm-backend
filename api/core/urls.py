@@ -30,8 +30,7 @@ urlpatterns = [
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='api-schema'), name='api-docs'),  # noqa: E501
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='api-schema'), name='redoc'),   # noqa: E501
     path("o/", include('oauth2_provider.urls', namespace='oauth2_provider')),
-    path('api/', include('user.urls')),
-    path('api/', include('recruiter.urls')),
-    path('api/', include('candidate.urls')),
+    path('api/user/', include('user.urls')),
+    path('api/recruiter/', include('recruiter.urls')),
     path('api/', include('tag.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

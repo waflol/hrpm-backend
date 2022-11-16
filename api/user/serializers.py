@@ -7,14 +7,13 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('id', 'first_name', 'last_name', 'email', 'phone_number',
-                  'avatar', 'password', 'is_male', 'is_recruiter')  # noqa:E501
+        fields = ('id', 'first_name', 'last_name', 'email', 'password', 'is_male')  # noqa:E501
         extra_kwargs = {
             'password': {'write_only': True}
         }
 
     def create(self, validated_data):
-        """Create and return a new user"""
+        """Create and return a new user with encrypted password"""
         return get_user_model().objects.create_user(**validated_data)
 
     def update(self, instance, validated_data):

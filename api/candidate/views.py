@@ -8,6 +8,6 @@ from user.serializers import UserSerializer
 
 # Create your views here.
 class CandidateProfileApiViewSet(viewsets.ViewSet, generics.ListAPIView):
-    queryset = User.objects.filter(Q(is_active=True) & Q(is_recruiter=False))
+    queryset = User.objects.all()
     serializer_class = UserSerializer
     parser_classes = [MultiPartParser, ]
