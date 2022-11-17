@@ -5,8 +5,6 @@ from .views import JobViewSet
 
 app_name = 'recruiter'
 router = DefaultRouter()
-# router.register(r'compnayregister', CompanyRegisterApiView, basename='compnayregister')
-# router.register(r'companyprofile', ManageCompanyView, basename='companyprofile')
 router.register('jobs', JobViewSet, basename='jobs')
 
 

@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'user',
     'tag',
     'recruiter',
-    'workflow',
     'candidate',
 
 ]

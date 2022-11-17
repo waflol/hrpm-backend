@@ -1,7 +1,12 @@
-from rest_framework import viewsets
+from django.http import Http404
+from rest_framework import viewsets, permissions, status
+from rest_framework.decorators import action, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .models import Job
-from .serializers import JobSerializer, JobDetailSerializer
+from rest_framework.response import Response
+
+from .permissions import IsOwnerOrAdmin
+from .models import Job, Workflow
+from .serializers import JobSerializer, JobDetailSerializer, WorkflowSerializer
 from drf_spectacular.utils import (
     extend_schema_view,
     extend_schema,
@@ -26,7 +31,14 @@ class JobViewSet(viewsets.ModelViewSet):
     """View for manage job APIs."""
     serializer_class = JobDetailSerializer
     queryset = Job.objects.all()
-    permission_classes = [IsAuthenticated]
+
+    def get_permissions(self):
+        if self.action in ("create", "add_workflow",):
+            return [permissions.IsAuthenticated(), ]
+        elif self.action in ('update', 'partial_update', 'destroy',):
+            return [IsOwnerOrAdmin(), ]
+        else:
+            return [permissions.AllowAny(), ]
 
     def _params_to_ints(self, qs):
         """Convert a list of strings to integers. """
@@ -50,5 +62,24 @@ class JobViewSet(viewsets.ModelViewSet):
         """Create a new job"""
         serializer.save(user=self.request.user)
 
+    @action(methods=['get'], detail=True, url_path='workflows')
+    @permission_classes([permissions.AllowAny])
+    def get_workflow(self, request, pk):
+        job = self.get_object()
+        workflows = job.worklows
+        return Response(WorkflowSerializer(workflows, many=True).data, status=status.HTTP_200_OK)
 
-# class CompanyViewSet()
+    @action(methods=['post'], detail=True, url_path='workflows')
+    def add_workflow(self, request, pk):
+        try:
+            job = self.get_object()
+        except Http404:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        else:
+            if request.user == job.user:
+                name = request.data.get('name')
+                description = request.data.get('description')
+                workflow = Workflow.objects.create(job=job, name=name, description=description)
+                return Response(WorkflowSerializer(workflow).data, status=status.HTTP_201_CREATED)
+            else:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
