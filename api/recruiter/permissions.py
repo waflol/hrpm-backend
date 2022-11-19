@@ -6,3 +6,6 @@ class IsOwnerOrAdmin(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
         return obj.user == request.user or request.user.is_superuser
+
+    def has_permission(self, request, view):
+        return True

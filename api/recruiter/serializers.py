@@ -6,6 +6,19 @@ from tag.models import JobTag
 from .models import Workflow, Stepper
 
 
+class WorkflowSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Workflow
+        fields = ['name', 'description']
+
+
+class StepperSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stepper
+        fields = '__all__'
+        read_only_fields = ['id']
+
+
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
@@ -16,11 +29,11 @@ class CompanySerializer(serializers.ModelSerializer):
 class JobSerializer(serializers.ModelSerializer):
     """Serializer for job"""
     job_types = JobTagSerializer(many=True, required=False)
-
+    workflows = WorkflowSerializer(many=True, required=False)
     class Meta:
         model = Job
         fields = ['id', 'title', 'experience_required', 'num_candidate_need', 'postition', 'end_date', 'salary',
-                  'job_types']
+                  'job_types', 'workflows']
         read_only_fields = ['id']
 
     def _get_or_create_jobtags(self, job_types, job):
@@ -56,17 +69,3 @@ class JobDetailSerializer(JobSerializer):
 
     class Meta(JobSerializer.Meta):
         fields = JobSerializer.Meta.fields + ['description', 'address', ]
-
-
-class WorkflowSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Workflow
-        fields = '__all__'
-        read_only_fields = ['id']
-
-
-class StepperSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Stepper
-        fields = '__all__'
-        read_only_fields = ['id']

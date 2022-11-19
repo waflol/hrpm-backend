@@ -38,7 +38,7 @@ class Job(models.Model):
 
 
 class Workflow(models.Model):
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='worklows')
+    job = models.OneToOneField(Job, on_delete=models.CASCADE, related_name='workflows')
     name = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
